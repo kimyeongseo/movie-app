@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Movie from './Movie';
+import styled from 'styled-components';
+
+const MainWrap = styled.div`
+font-size: 20px`;
 
 //app을 mount하면 isLoading은 기본적으로 true이다.
 
@@ -17,27 +21,37 @@ class App extends Component {
     const { data: { data: { movies } } }
       = await axios.get(" https://yts-proxy.now.sh/list_movies.json?sort_by=rating"); //axios가 끝날 때까지 기다렸다가 계속해
     //this.setState({movies: movies}); 왼쪽은 state에 있고 오른쪽은 axios에 있는 data이다. 이렇게 양쪽이 같은 경우에는 생략이 가능하다.
-    this.setState({ movies, isLoading: false })
-  }
-
-  async componentDidMount() {
-    this.getMovies();
+    this.setState({ movies, isLoading: false });
   };
+
+  componentDidMount() {
+    this.getMovies();
+  }
 
   render() {
     const { isLoading, movies } = this.state;
+    console.log(this.state.movies);
     return (
-      <div>
-        {isLoading ? "Loading..." : movies.map(movie => {
-          <Movie
-            key={movie.id}
-            id={movie.id}
-            year={movie.year}
-            title={movie.title}
-            summary={movie.summary}
-            poster={movie.medium_cover_image} />
-        })}
-      </div>
+      <MainWrap>
+        <section className='container'>
+          {isLoading ? (
+            <div className='loader'>
+              <span className='loader__text'>Loading...</span>
+            </div>
+          ) : (<div className='movies'>
+            {movies.map(movie => ( //map 사용할 때 괄호('{}', '()') 구분 잘하기
+              <Movie
+                key={movie.id}
+                id={movie.id}
+                year={movie.year}
+                title={movie.title}
+                summary={movie.summary}
+                poster={movie.medium_cover_image}
+                genres={movie.genres} />
+            ))}
+          </div>)}
+        </section>
+      </MainWrap>
     );
   }
 }
