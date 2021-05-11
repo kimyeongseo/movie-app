@@ -3,10 +3,13 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const MovieWrap = styled.div`
+display: flex;
+
 .movie {
-    width: 45%;
+    width: 35em;
+    height: 15em;
     background-color: white;
-    margin: 50px 0px;
+    margin: 30px 0px;
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
@@ -39,19 +42,18 @@ const MovieWrap = styled.div`
     color: #2c2c2c;
   }
   
-.movie__genres {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+.movie__genres{
     display: flex;
-    margin: 5px 0px;
+    height: 30px;
+    margin: 0;
+}
+
+.genres__genre {
+    list-style: none;
+    margin: 5px 5px;
+    font-size: 13px;
   }
   
-  .movie__genres li,
-  .movie .movie__year {
-    margin-right: 10px;
-    font-size: 14px;
-  }
 `;
 
 function Movie({ year, title, summary, poster, genres }) {
@@ -62,14 +64,14 @@ function Movie({ year, title, summary, poster, genres }) {
                 <div className='movie_data'>
                     <h3 className="movie__title">{title}</h3>
                     <h5 className='movie__year'>{year}</h5>
-                    <p className='movie__summary'>{summary}</p>
-                    <ul className='movie__ganres'>
+                    <ul className='movie__genres'>
                         {genres.map((genre, currentItemNumber) => (
                             <li key={currentItemNumber} className='genres__genre'>
                                 {genre}
                             </li>
                         ))}
                     </ul>
+                    <p className='movie__summary'>{summary.slice(0, 180)}...</p>
                 </div>
             </div>
         </MovieWrap>

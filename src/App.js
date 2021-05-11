@@ -4,14 +4,12 @@ import Movie from './Movie';
 import styled from 'styled-components';
 
 const MainWrap = styled.div`
-margin: 0;
+margin: auto;
 padding: 0;
 background-color: #eff3f7;
 height: 100%;
+display: flex;
 
-* {
-  box-sizing: border-box;
-}
 
 .container {
   height: 100%;
@@ -20,20 +18,19 @@ height: 100%;
 }
 
 .loader {
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .movies {
-  display: inline;
+  display: flex;
   justify-content: space-between;
   align-items: flex-start;
   flex-wrap: wrap;
-  padding: 50px;
-  padding-top: 70px;
+  padding-top: 100px;
   width: 90%;
 }
 `;
