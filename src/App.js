@@ -4,7 +4,39 @@ import Movie from './Movie';
 import styled from 'styled-components';
 
 const MainWrap = styled.div`
-font-size: 20px`;
+margin: 0;
+padding: 0;
+background-color: #eff3f7;
+height: 100%;
+
+* {
+  box-sizing: border-box;
+}
+
+.container {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.loader {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.movies {
+  display: inline;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  padding: 50px;
+  padding-top: 70px;
+  width: 90%;
+}
+`;
 
 //app을 mount하면 isLoading은 기본적으로 true이다.
 
